@@ -1,0 +1,415 @@
+```css
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: #fff5f7;
+    color: #76505c;
+    overflow-x: hidden;
+}
+
+/* HALAMAN PEMBUKA */
+.cover {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+    background:
+        radial-gradient(circle at top left, #ffe5ec, transparent 45%),
+        linear-gradient(135deg, #fff9fb, #f8dce5, #f5cbd9);
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+.cover-tertutup {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.cover-card {
+    width: 100%;
+    max-width: 520px;
+    padding: 45px 25px;
+    text-align: center;
+    border: 1px solid #ffffffc9;
+    border-radius: 25px;
+    background: #ffffffb8;
+    box-shadow: 0 15px 45px #b87d8c25;
+    animation: muncul 1.2s ease both;
+}
+
+.subjudul,
+.label {
+    color: #bd8293;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.bunga {
+    margin: 22px 0;
+    font-size: 40px;
+    animation: goyang 3s ease-in-out infinite;
+}
+
+.cover h1,
+.hero h1 {
+    color: #a95e76;
+    font-family: Georgia, serif;
+    font-size: clamp(35px, 8vw, 52px);
+    font-weight: normal;
+}
+
+.cover h1 span,
+.hero h1 span {
+    color: #d59aaa;
+    font-style: italic;
+}
+
+.tanggal-cover {
+    margin-top: 16px;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.teks-pembuka {
+    max-width: 350px;
+    margin: 22px auto;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+/* TOMBOL BUKA */
+.tombol-buka {
+    padding: 14px 25px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #d99bad, #b96882);
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px #c47b923b;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: denyut 2s infinite;
+}
+
+.tombol-buka:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px #c47b9255;
+}
+
+/* ISI UNDANGAN */
+.undangan {
+    display: none;
+    opacity: 0;
+}
+
+.undangan.tampil {
+    display: block;
+    animation: muncul 1.2s ease forwards;
+}
+
+.hero {
+    min-height: 520px;
+    padding: 100px 22px 75px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background:
+        radial-gradient(circle at top right, #f7dce5, transparent 50%),
+        linear-gradient(160deg, #fffafd, #fbe8ee);
+}
+
+.hero .label {
+    margin-bottom: 25px;
+}
+
+.hiasan {
+    margin: 24px 0;
+    color: #d79bad;
+    font-size: 28px;
+    letter-spacing: 8px;
+}
+
+.ayat {
+    max-width: 480px;
+    margin: 10px auto 25px;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.9;
+}
+
+.tanggal {
+    margin-top: 22px;
+    padding: 10px 20px;
+    border: 1px solid #e9bdcb;
+    border-radius: 30px;
+    font-size: 14px;
+}
+
+/* KARTU INFORMASI */
+.kartu {
+    max-width: 720px;
+    margin: 35px auto;
+    padding: 42px 25px;
+    text-align: center;
+    border: 1px solid #f4dce4;
+    border-radius: 22px;
+    background: #fffdfd;
+    box-shadow: 0 10px 35px #c58b9a12;
+    animation: naik 1s ease both;
+}
+
+.kartu .label {
+    margin-bottom: 20px;
+}
+
+.kartu h2 {
+    margin: 15px 0;
+    color: #ad657d;
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: normal;
+}
+
+.kartu p {
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.dan {
+    margin: 18px 0;
+    color: #d79bad;
+    font-family: Georgia, serif;
+    font-size: 34px;
+    font-style: italic;
+}
+
+.detail-acara {
+    margin-top: 20px;
+}
+
+.detail-acara p {
+    margin: 8px 0;
+}
+
+.detail-acara strong {
+    color: #a95e76;
+}
+
+/* HITUNG MUNDUR */
+.countdown {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.countdown div {
+    min-width: 75px;
+    padding: 15px 12px;
+    border: 1px solid #f1d5de;
+    border-radius: 15px;
+    background: #fff3f7;
+}
+
+.countdown strong,
+.countdown span {
+    display: block;
+}
+
+.countdown strong {
+    color: #b56880;
+    font-size: 27px;
+}
+
+.countdown span {
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+/* PENUTUP */
+.penutup {
+    background: linear-gradient(145deg, #fffafb, #fceaf0);
+}
+
+.penutup .doa {
+    margin-top: 18px;
+    font-style: italic;
+}
+
+.penutup h2 {
+    margin-top: 25px;
+}
+
+/* FOOTER */
+footer {
+    padding: 25px 15px;
+    text-align: center;
+    background: #f6e0e7;
+    color: #a76a7e;
+    font-size: 12px;
+}
+
+/* TOMBOL MUSIK */
+.tombol-musik {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 200;
+    width: 52px;
+    height: 52px;
+    border: 2px solid white;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d99bad, #b96882);
+    color: white;
+    font-size: 23px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px #bd788955;
+    animation: putarMusik 4s linear infinite;
+}
+
+.tombol-musik.berhenti {
+    animation: none;
+    opacity: 0.85;
+}
+
+.tombol-musik:focus-visible {
+    outline: 3px solid #80545e;
+    outline-offset: 4px;
+}
+
+/* ANIMASI PARTIKEL */
+.partikel {
+    position: fixed;
+    top: -40px;
+    z-index: 150;
+    pointer-events: none;
+    animation: jatuh linear forwards;
+}
+
+/* KEYFRAMES */
+@keyframes muncul {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes naik {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes goyang {
+    0%, 100% {
+        transform: rotate(-5deg) scale(1);
+    }
+    50% {
+        transform: rotate(5deg) scale(1.08);
+    }
+}
+
+@keyframes denyut {
+    0%, 100% {
+        box-shadow: 0 6px 20px #c47b923b;
+    }
+    50% {
+        box-shadow: 0 6px 28px #c47b9275;
+    }
+}
+
+@keyframes putarMusik {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes jatuh {
+    0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.9;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* TAMPILAN HP */
+@media (max-width: 600px) {
+    .cover-card {
+        padding: 35px 20px;
+    }
+
+    .hero {
+        min-height: 440px;
+        padding: 75px 18px;
+    }
+
+    .kartu {
+        margin: 22px 15px;
+        padding: 32px 18px;
+    }
+
+    .kartu h2 {
+        font-size: 25px;
+    }
+
+    .countdown {
+        gap: 8px;
+    }
+
+    .countdown div {
+        min-width: 65px;
+        padding: 12px 8px;
+    }
+
+    .countdown strong {
+        font-size: 23px;
+    }
+
+    .tombol-musik {
+        right: 15px;
+        bottom: 15px;
+        width: 48px;
+        height: 48px;
+    }
+}
+```

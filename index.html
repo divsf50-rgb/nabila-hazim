@@ -1,0 +1,220 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan Nabila & Hazim</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    </button>
+
+    <!-- HALAMAN PEMBUKA -->
+    <section id="cover" class="cover">
+        <div class="cover-card">
+            <p class="subjudul">THE WEDDING OF</p>
+
+            <div class="bunga">🌸</div>
+
+            <h1>Nabila <span>&</span> Hazim</h1>
+
+            <p class="tanggal-cover">Minggu, 25 Oktober 2026</p>
+
+            <p class="teks-pembuka">
+                Dengan penuh rasa syukur, kami mengundang
+                Anda untuk hadir di hari bahagia kami.
+            </p>
+
+            <button class="tombol-buka" onclick="bukaUndangan()">
+                💌 Buka Undangan
+            </button>
+        </div>
+    </section>
+
+    <!-- ISI UNDANGAN -->
+    <main id="undangan" class="undangan">
+
+        <section class="hero">
+            <p class="label">Bismillahirrahmanirrahim</p>
+
+            <div class="hiasan">❀ ❀ ❀</div>
+
+            <p class="ayat">
+                Dengan memohon rahmat dan ridha Allah SWT,
+                kami bermaksud menyelenggarakan pernikahan kami.
+            </p>
+
+            <h1>Nabila <span>&</span> Hazim</h1>
+
+            <p class="tanggal">Minggu, 25 Oktober 2026</p>
+
+            <div class="hiasan">♡</div>
+        </section>
+
+        <section class="kartu">
+            <p class="label">Mempelai yang berbahagia</p>
+
+            <h2>Nabila Fitriana</h2>
+            <p>Putri dari keluarga mempelai wanita</p>
+
+            <div class="dan">&</div>
+
+            <h2>Hazim</h2>
+            <p>Putra dari keluarga mempelai pria</p>
+        </section>
+
+        <section class="kartu">
+            <p class="label">Save the Date</p>
+            <h2>Hari Pernikahan</h2>
+
+            <div class="detail-acara">
+                <p>📅 <strong>Hari/Tanggal</strong></p>
+                <p>Minggu, 25 Oktober 2026</p>
+
+                <p>📍 <strong>Lokasi</strong></p>
+                <p>Sengseng</p>
+            </div>
+        </section>
+
+        <section class="kartu">
+            <p class="label">Menuju hari bahagia</p>
+            <h2>Hitung Mundur</h2>
+
+            <div id="countdown" class="countdown">
+                Memuat hitung mundur...
+            </div>
+        </section>
+
+        <section class="kartu penutup">
+            <div class="bunga">🌷</div>
+
+            <p>
+                Merupakan suatu kebahagiaan bagi kami apabila
+                Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
+            </p>
+
+            <p class="doa">
+                Semoga Allah SWT menjadikan pernikahan ini
+                sakinah, mawaddah, dan rahmah. Aamiin.
+            </p>
+
+            <h2>Nabila & Hazim</h2>
+        </section>
+
+        <footer>
+            <p>Dibuat dengan ♡ untuk Nabila & Hazim</p>
+        </footer>
+
+    </main>
+
+    <script>
+        const musik = document.getElementById("musik");
+        const tombolMusik = document.getElementById("tombolMusik");
+
+        // BUKA UNDANGAN DAN COBA PUTAR MUSIK
+        function bukaUndangan() {
+            document.getElementById("cover").classList.add("cover-tertutup");
+
+            const undangan = document.getElementById("undangan");
+            undangan.classList.add("tampil");
+
+            musik.play()
+                .then(() => {
+                    tombolMusik.textContent = "🎵";
+                    tombolMusik.classList.remove("berhenti");
+                    tombolMusik.setAttribute("aria-label", "Matikan musik");
+                })
+                .catch(() => {
+                    tombolMusik.textContent = "🔇";
+                    tombolMusik.classList.add("berhenti");
+                });
+
+            mulaiPartikel();
+        }
+
+        // NYALAKAN DAN MATIKAN MUSIK
+        function toggleMusik() {
+            if (musik.paused) {
+                musik.play()
+                    .then(() => {
+                        tombolMusik.textContent = "🎵";
+                        tombolMusik.classList.remove("berhenti");
+                        tombolMusik.setAttribute("aria-label", "Matikan musik");
+                    })
+                    .catch(() => {
+                        alert("Musik belum bisa diputar. Periksa file music/lagu.mp3.");
+                    });
+            } else {
+                musik.pause();
+                tombolMusik.textContent = "🔇";
+                tombolMusik.classList.add("berhenti");
+                tombolMusik.setAttribute("aria-label", "Nyalakan musik");
+            }
+        }
+
+        // HITUNG MUNDUR MENUJU PERNIKAHAN
+        const tanggalPernikahan =
+            new Date("2026-10-25T08:00:00+07:00").getTime();
+
+        function perbaruiCountdown() {
+            const sekarang = new Date().getTime();
+            const selisih = tanggalPernikahan - sekarang;
+            const elemen = document.getElementById("countdown");
+
+            if (selisih <= 0) {
+                elemen.textContent = "Hari bahagia telah tiba! 💗";
+                return;
+            }
+
+            const hari = Math.floor(selisih / (1000 * 60 * 60 * 24));
+            const jam = Math.floor(
+                (selisih % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+            );
+            const menit = Math.floor(
+                (selisih % (1000 * 60 * 60)) / (1000 * 60)
+            );
+            const detik = Math.floor(
+                (selisih % (1000 * 60)) / 1000
+            );
+
+            elemen.innerHTML = `
+                <div><strong>${hari}</strong><span>Hari</span></div>
+                <div><strong>${jam}</strong><span>Jam</span></div>
+                <div><strong>${menit}</strong><span>Menit</span></div>
+                <div><strong>${detik}</strong><span>Detik</span></div>
+            `;
+        }
+
+        perbaruiCountdown();
+        setInterval(perbaruiCountdown, 1000);
+
+        // ANIMASI BUNGA DAN HATI
+        function mulaiPartikel() {
+            if (window.partikelBerjalan) return;
+            window.partikelBerjalan = true;
+
+            setInterval(() => {
+                const partikel = document.createElement("span");
+                const pilihan = ["🌸", "♡", "🌷", "💕"];
+
+                partikel.className = "partikel";
+                partikel.textContent =
+                    pilihan[Math.floor(Math.random() * pilihan.length)];
+
+                partikel.style.left = Math.random() * 100 + "vw";
+                partikel.style.animationDuration =
+                    (4 + Math.random() * 4) + "s";
+                partikel.style.fontSize =
+                    (14 + Math.random() * 14) + "px";
+
+                document.body.appendChild(partikel);
+
+                setTimeout(() => partikel.remove(), 8500);
+            }, 650);
+        }
+    </script>
+
+</body>
+</html>
+```
